@@ -24,9 +24,12 @@ The combined effect set is:
 - Causes stars to fall when you take damage
 - 15% increased magic damage
 
-Effects are applied by setting the same `Player` fields vanilla uses
-(`manaFlower`, `manaRegenBuff`, `manaMagnet`, `magicCuffs`, `statManaMax2`,
-`starCloak`, and magic `GetDamage`), so it behaves identically to the originals.
+Most effects are applied by setting the same `Player` fields vanilla uses
+(`manaFlower`, `manaRegenBuff`, `manaMagnet`, `magicCuffs`, `statManaMax2`, and
+magic `GetDamage`). tModLoader's `Player` has no flag for the Star Cloak's
+"stars fall when hit" effect, so a small `ModPlayer`
+(`Common/Players/SorcerersReliquaryPlayer.cs`) reproduces it by detecting damage
+and spawning Hallow Stars — the same projectile the vanilla Star Cloak uses.
 
 ### Crafting
 
@@ -59,6 +62,7 @@ MageEnhancements.cs                                  Main mod class
 MageEnhancements.csproj                              Project file
 build.txt / description.txt                          Mod metadata
 icon.png                                             Mod browser icon
+Common/Players/SorcerersReliquaryPlayer.cs           "Stars fall when hit" effect
 Common/Systems/RecipeGroupSystem.cs                  "Any 3 of 5" recipe group
 Content/Items/Accessories/SorcerersReliquary.cs      The accessory
 Content/Items/Accessories/SorcerersReliquary.png     Its sprite

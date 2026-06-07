@@ -1,3 +1,4 @@
+using MageEnhancements.Common.Players;
 using MageEnhancements.Common.Systems;
 using Terraria;
 using Terraria.ID;
@@ -7,9 +8,10 @@ namespace MageEnhancements.Content.Items.Accessories
 {
 	// The Sorcerer's Reliquary: a single accessory that rolls together the effects of
 	// the Arcane Flower, Magnet Flower, Celestial Cuffs, Celestial Emblem and Mana Cloak.
-	// Each effect below reproduces a vanilla accessory by setting the same Player fields
-	// that vanilla sets in Player.VanillaUpdateAccessory, so behaviour (including how it
-	// interacts with other accessories) matches the originals exactly.
+	// Most effects reproduce a vanilla accessory by setting the same Player fields vanilla
+	// sets in Player.VanillaUpdateAccessory, so behaviour matches the originals. The one
+	// exception is the Star Cloak effect, which has no vanilla Player flag and is handled
+	// by SorcerersReliquaryPlayer.
 	public class SorcerersReliquary : ModItem
 	{
 		public override void SetStaticDefaults()
@@ -47,7 +49,9 @@ namespace MageEnhancements.Content.Items.Accessories
 			player.statManaMax2 += 20;
 
 			// Mana Cloak's Star Cloak component: drops damaging stars when the wearer is hit.
-			player.starCloak = true;
+			// tModLoader's Player has no vanilla flag for this, so SorcerersReliquaryPlayer
+			// reproduces it (see Common/Players/SorcerersReliquaryPlayer.cs).
+			player.GetModPlayer<SorcerersReliquaryPlayer>().reliquaryStarCloak = true;
 
 			// Celestial Emblem's emblem component: 15% increased magic damage.
 			player.GetDamage(DamageClass.Magic) += 0.15f;
