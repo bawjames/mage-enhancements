@@ -9,31 +9,39 @@ One accessory that combines the effects of five vanilla mage accessories:
 
 | Component | Effect granted |
 | --- | --- |
-| Arcane Flower | −8% mana usage, auto Mana Potions, and increased mana regeneration |
+| Arcane Flower | −8% mana usage, auto Mana Potions, and reduced enemy aggression |
 | Magnet Flower | −8% mana usage, auto Mana Potions, and increased Star pickup range |
 | Celestial Cuffs | +20 maximum mana, mana restored when hit, increased Star pickup range |
 | Celestial Emblem | +15% magic damage and increased Star pickup range |
 | Mana Cloak | −8% mana usage, auto Mana Potions, and falling stars when hit |
 
-The combined effect set is:
+The combined (de-duplicated) effect set is:
 
 - Reduces mana usage by 8% and automatically uses Mana Potions when needed
-- Increased mana regeneration
 - Increases maximum mana by 20 and restores mana when damaged
+- 15% increased magic damage
 - Increases pickup range for Stars
 - Causes stars to fall when you take damage
-- 15% increased magic damage
+- Reduces enemy aggression
 
-Most effects are applied by setting the same `Player` fields vanilla uses
-(`manaFlower`, `manaRegenBuff`, `manaMagnet`, `magicCuffs`, `statManaMax2`, and
-magic `GetDamage`). tModLoader's `Player` has no flag for the Star Cloak's
-"stars fall when hit" effect, so a small `ModPlayer`
-(`Common/Players/SorcerersReliquaryPlayer.cs`) reproduces it by detecting damage
-and spawning Hallow Stars — the same projectile the vanilla Star Cloak uses.
+Effects are applied by setting the same `Player` fields vanilla sets in
+`Player.ApplyEquipFunctional` (verified against the decompiled 1.4.4 source):
+`manaFlower`, `manaCost -= 0.08f`, `aggro -= 400`, `manaMagnet`, `magicCuffs`,
+`statManaMax2 += 20`, magic `GetDamage`, and the `starCloakItem` fields (which drive
+the vanilla Star Cloak proc — using the Mana Cloak variant). So behaviour, including
+the falling-star damage and cooldown, is identical to the originals.
+
+**No stacking with its components.** If you wear the reliquary alongside any of its
+five source accessories, the bonuses don't double up. The flag effects (auto-potion,
+star pickup, mana-on-hit) can't stack in vanilla; the falling stars use a single
+shared `starCloakItem` field so they fire once; and the additive effects are withheld
+when the matching component is also worn — the −8% mana cost (vs. Arcane/Magnet/Mana
+Cloak), the +20 max mana (vs. Celestial Cuffs), the +15% magic damage (vs. Celestial
+Emblem), and the reduced aggro (vs. Arcane Flower).
 
 ### Crafting
 
-Crafted at a **Tinkerer's Workbench** from **any 3 of** these 5 accessories:
+Crafted at a **Tinkerer's Workbench** from **any 3 different** of these 5 accessories:
 
 - Arcane Flower
 - Magnet Flower
@@ -41,8 +49,10 @@ Crafted at a **Tinkerer's Workbench** from **any 3 of** these 5 accessories:
 - Celestial Emblem
 - Mana Cloak
 
-(Implemented as a recipe group, so any mix of three works — e.g. Celestial Cuffs +
-Celestial Emblem + Mana Cloak.)
+This is implemented as every distinct trio (C(5,3) = 10 recipes), so the recipe
+always requires three *different* accessories — you can't use three of the same one.
+The crafting menu only lists recipes you currently hold the ingredients for, so you
+typically see just the one matching your three accessories.
 
 ## Building
 
@@ -62,9 +72,8 @@ MageEnhancements.cs                                  Main mod class
 MageEnhancements.csproj                              Project file
 build.txt / description.txt                          Mod metadata
 icon.png                                             Mod browser icon
-Common/Players/SorcerersReliquaryPlayer.cs           "Stars fall when hit" effect
-Common/Systems/RecipeGroupSystem.cs                  "Any 3 of 5" recipe group
 Content/Items/Accessories/SorcerersReliquary.cs      The accessory
 Content/Items/Accessories/SorcerersReliquary.png     Its sprite
 Localization/en-US_Mods.MageEnhancements.hjson       Name + tooltip text
+_gen_sprites.py                                       Generates the sprite + icon
 ```

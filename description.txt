@@ -4,11 +4,11 @@ Adds the Sorcerer's Reliquary: a single accessory that combines the effects of t
 Arcane Flower, Magnet Flower, Celestial Cuffs, Celestial Emblem and Mana Cloak.
 
 In one slot it grants:
-- Reduced mana usage and automatic Mana Potion use
-- Increased mana regeneration
-- +20 maximum mana and mana restored when you take damage
+- Reduces mana usage by 8% and automatically uses Mana Potions
+- Increases maximum mana by 20 and restores mana when damaged
+- 15% increased magic damage
 - Increased Star pickup range
 - Falling stars when you take damage
-- 15% increased magic damage
+- Reduced enemy aggression
 
-Craft it at a Tinkerer's Workbench from any 3 of those 5 accessories.
+Craft it at a Tinkerer's Workbench from any 3 different ones of those 5 accessories.
