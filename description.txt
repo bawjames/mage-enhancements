@@ -1,0 +1,14 @@
+Mage Enhancements
+
+Adds the Sorcerer's Reliquary: a single accessory that combines the effects of the
+Arcane Flower, Magnet Flower, Celestial Cuffs, Celestial Emblem and Mana Cloak.
+
+In one slot it grants:
+- Reduced mana usage and automatic Mana Potion use
+- Increased mana regeneration
+- +20 maximum mana and mana restored when you take damage
+- Increased Star pickup range
+- Falling stars when you take damage
+- 15% increased magic damage
+
+Craft it at a Tinkerer's Workbench from any 3 of those 5 accessories.

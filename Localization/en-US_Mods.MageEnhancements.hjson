@@ -1,0 +1,19 @@
+Mods: {
+	MageEnhancements: {
+		Items: {
+			SorcerersReliquary: {
+				DisplayName: Sorcerer's Reliquary
+				Tooltip:
+					'''
+					Reduces mana usage by 8% and automatically uses Mana Potions when needed
+					Increased mana regeneration
+					Increases maximum mana by 20 and restores mana when damaged
+					Increases pickup range for Stars
+					Causes stars to fall when the wearer takes damage
+					15% increased magic damage
+					'The collected relics of a hundred sorcerers, bound into one'
+					'''
+			}
+		}
+	}
+}

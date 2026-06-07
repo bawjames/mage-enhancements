@@ -1,0 +1,7 @@
+author = bawjames
+displayName = Mage Enhancements
+version = 0.1
+hideCode = false
+hideResources = false
+includeSource = true
+buildIgnore = .git\*, .github\*, .gitignore, *.csproj, *.user, obj\*, bin\*, .vs\*, *.md, *.py
