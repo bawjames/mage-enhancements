@@ -10,6 +10,6 @@ In one slot it grants:
 - Increased Star pickup range
 - Falling stars when you take damage
 - Reduced enemy aggression
-- 25% chance to not inflict Mana Sickness when using a mana potion
+- Reduces Mana Sickness duration by 15%
 
 Craft it at a Tinkerer's Workbench from any 3 different ones of those 5 accessories.
