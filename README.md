@@ -21,12 +21,8 @@ The combined (de-duplicated) effect set is:
 - Increases maximum mana by 20 and restores mana when damaged
 - 15% increased magic damage
 - Increases pickup range for Stars
-- Causes stars to fall when you take damage (the stars restore mana when collected)
+- Causes stars to fall when you take damage
 - Reduces enemy aggression
-
-It also adds one perk beyond the five source accessories:
-
-- Reduces Mana Sickness duration by 15%
 
 Effects are applied by setting the same `Player` fields vanilla sets in
 `Player.ApplyEquipFunctional` (verified against the decompiled 1.4.4 source):
@@ -34,11 +30,6 @@ Effects are applied by setting the same `Player` fields vanilla sets in
 `statManaMax2 += 20`, magic `GetDamage`, and the `starCloakItem` fields (which drive
 the vanilla Star Cloak proc — using the Mana Cloak variant). So behaviour, including
 the falling-star damage and cooldown, is identical to the originals.
-
-The Mana Sickness perk is in the spirit of the Philosopher's Stone (which shortens
-Potion Sickness): there's no vanilla mana-sickness-reduction field, so while the
-reliquary is worn it caps the `ManaSickness` debuff's remaining time at 85% of its full
-duration, making it last 15% less.
 
 **No stacking with its components.** If you wear the reliquary alongside any of its
 five source accessories, the bonuses don't double up. The flag effects (auto-potion,

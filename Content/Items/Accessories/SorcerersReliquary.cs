@@ -40,18 +40,6 @@ namespace MageEnhancements.Content.Items.Accessories
 			player.starCloakItem = Item;
 			player.starCloakItem_manaCloakOverrideItem = Item;
 
-			// Reduce Mana Sickness duration by 15%, in the spirit of the Philosopher's Stone
-			// (which shortens Potion Sickness). There's no vanilla mana-sickness-reduction
-			// field, so while the accessory is worn we cap the debuff's remaining time at 85%
-			// of its full duration.
-			int manaSickIndex = player.FindBuffIndex(BuffID.ManaSickness);
-			if (manaSickIndex >= 0)
-			{
-				int reducedDuration = (int)(Player.manaSickTime * 0.85f);
-				if (player.buffTime[manaSickIndex] > reducedDuration)
-					player.buffTime[manaSickIndex] = reducedDuration;
-			}
-
 			// --- Additive effects ---
 			// These add a number, so they WOULD double up if the component that also provides
 			// them is equipped. Each is withheld in that case so the total matches one accessory.
