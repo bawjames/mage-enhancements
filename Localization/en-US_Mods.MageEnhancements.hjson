@@ -23,7 +23,7 @@ Items: {
 			Increases maximum mana by 20
 			Causes stars to fall after taking damage
 			Stars restore mana when collected
-			A shiny box of trinkets
+			'A shiny box of trinkets'
 			'''
 		DisplayName: Sorcerer's Reliquary
 	}
