@@ -2,18 +2,28 @@ Mods: {
 	MageEnhancements: {
 		Items: {
 			SorcerersReliquary: {
-				DisplayName: "Sorcerer's Reliquary"
-				Tooltip:
-					'''
-					Reduces mana usage by 8% and automatically uses Mana Potions when needed
-					Increases maximum mana by 20 and restores mana when damaged
-					15% increased magic damage
-					Increases pickup range for Stars
-					Causes stars to fall when you take damage
-					Reduces enemy aggression
-					A shiny box of trinkets
-					'''
+				DisplayName: Sorcerer's Reliquary
+				Tooltip: ""
 			}
 		}
+	}
+}
+
+Items: {
+	SorcerersReliquary: {
+		Tooltip:
+			'''
+			8% reduced mana cost
+			Automatically use mana potions when needed
+			Enemies are less likely to target you
+			Increases pickup range for mana stars
+			15% increased magic damage
+			Restores mana when damaged
+			Increases maximum mana by 20
+			Causes stars to fall after taking damage
+			Stars restore mana when collected
+			A shiny box of trinkets
+			'''
+		DisplayName: Sorcerers Reliquary
 	}
 }
