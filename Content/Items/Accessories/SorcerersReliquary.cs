@@ -31,7 +31,7 @@ namespace MageEnhancements.Content.Items.Accessories
 			// Vanilla sets each of these booleans once no matter how many accessories provide
 			// them, so they never stack. Always applied.
 			player.manaFlower = true;   // automatically uses Mana Potions when out of mana
-			player.manaMagnet = true;   // Celestial Magnet pickup range (doubled by ReliquaryMagnetGlobalItem)
+			player.manaMagnet = true;   // increased Star pickup range (Celestial Magnet)
 			player.magicCuffs = true;   // restores mana when hit (Magic Cuffs)
 
 			// Falling stars when hit (Mana Cloak). Vanilla drives this from a single shared
@@ -44,13 +44,11 @@ namespace MageEnhancements.Content.Items.Accessories
 			// These add a number, so they WOULD double up if the component that also provides
 			// them is equipped. Each is withheld in that case so the total matches one accessory.
 
-			// Mana Flower's -8% mana cost, applied twice multiplicatively (x0.92^2 ~= -15.4%)
-			// to reflect the two Mana Flowers consumed crafting the reliquary. Provided by the
-			// Arcane Flower, Magnet Flower and Mana Cloak, so withheld if one of those is worn.
+			// -8% mana cost (provided by the Arcane Flower, Magnet Flower and Mana Cloak).
 			if (!IsWearingComponent(player, ItemID.ArcaneFlower)
 				&& !IsWearingComponent(player, ItemID.MagnetFlower)
 				&& !IsWearingComponent(player, ItemID.ManaCloak))
-				player.manaCost -= 1f - 0.92f * 0.92f;
+				player.manaCost -= 0.08f;
 
 			// Reduced enemy aggression (Arcane Flower).
 			if (!IsWearingComponent(player, ItemID.ArcaneFlower))
@@ -63,6 +61,9 @@ namespace MageEnhancements.Content.Items.Accessories
 			// 15% increased magic damage (Celestial Emblem).
 			if (!IsWearingComponent(player, ItemID.CelestialEmblem))
 				player.GetDamage(DamageClass.Magic) += 0.15f;
+
+			// +8% magic critical strike chance — a small bonus none of the five components give.
+			player.GetCritChance(DamageClass.Magic) += 8f;
 		}
 
 		// True if the player has the given item equipped in a functional (non-vanity) accessory
