@@ -17,19 +17,24 @@ One accessory that combines the effects of five vanilla mage accessories:
 
 The combined (de-duplicated) effect set is:
 
-- Reduces mana usage by 8% and automatically uses Mana Potions when needed
+- Reduces mana usage by ~15% and automatically uses Mana Potions when needed
 - Increases maximum mana by 20 and restores mana when damaged
 - 15% increased magic damage
-- Increases pickup range for Stars
+- Greatly increases pickup range for Stars
 - Causes stars to fall when you take damage
 - Reduces enemy aggression
 
 Effects are applied by setting the same `Player` fields vanilla sets in
 `Player.ApplyEquipFunctional` (verified against the decompiled 1.4.4 source):
-`manaFlower`, `manaCost -= 0.08f`, `aggro -= 400`, `manaMagnet`, `magicCuffs`,
+`manaFlower`, `manaCost`, `aggro -= 400`, `manaMagnet`, `magicCuffs`,
 `statManaMax2 += 20`, magic `GetDamage`, and the `starCloakItem` fields (which drive
-the vanilla Star Cloak proc — using the Mana Cloak variant). So behaviour, including
-the falling-star damage and cooldown, is identical to the originals.
+the vanilla Star Cloak proc — using the Mana Cloak variant), so they behave like the
+originals.
+
+Two effects are **doubled** to reflect that crafting the reliquary consumes two Mana
+Flowers and two Celestial Magnets: the mana-cost reduction is the Mana Flower's −8%
+applied twice multiplicatively (×0.92² ≈ −15.4%), and `ReliquaryMagnetGlobalItem` adds a
+second `Item.manaGrabRange` to the mana-star pickup range.
 
 **No stacking with its components.** If you wear the reliquary alongside any of its
 five source accessories, the bonuses don't double up. The flag effects (auto-potion,
@@ -74,6 +79,7 @@ build.txt / description.txt                          Mod metadata
 icon.png                                             Mod browser icon
 Content/Items/Accessories/SorcerersReliquary.cs      The accessory
 Content/Items/Accessories/SorcerersReliquary.png     Its sprite
+Common/GlobalItems/ReliquaryMagnetGlobalItem.cs      Doubles the star pickup range
 Localization/en-US_Mods.MageEnhancements.hjson       Name + tooltip text
 _gen_sprites.py                                       Generates the sprite + icon
 ```
